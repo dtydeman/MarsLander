@@ -1,0 +1,61 @@
+package Assignment;
+
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+
+//Landing area where ship will land.
+
+public class LandingArea {
+    
+    // X coordinate of the landing area.
+    public int x;
+    //Y coordinate of the landing area.
+    public int y;
+    // Image of landing area.
+    private BufferedImage landingAreaImg;
+    // Width of landing area.
+    public int landingAreaImgWidth;
+    
+    
+    public LandingArea()
+    {
+        Initialize();
+        LoadContent();
+    }
+    
+    
+    private void Initialize()
+    {   
+        // X coordinate of the landing area is at 46% frame width.
+        x = (int)(Framework.frameWidth * 0.46);
+        // Y coordinate of the landing area is at 86% frame height.
+        y = (int)(Framework.frameHeight * 0.88);
+    }
+    
+    
+    //Loads the image for the landing area
+    private void LoadContent()
+    {
+        try
+        {
+            URL landingAreaImgUrl = this.getClass().getResource("Images/Landing Area.png");
+            landingAreaImg = ImageIO.read(landingAreaImgUrl);
+            landingAreaImgWidth = landingAreaImg.getWidth();
+        }
+        catch (IOException ex) {
+            Logger.getLogger(LandingArea.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    //Draws the image for the landing area
+    public void Draw(Graphics2D g2d)
+    {
+        g2d.drawImage(landingAreaImg, x, y, null);
+    }
+    
+}
